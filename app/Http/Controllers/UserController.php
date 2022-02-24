@@ -45,7 +45,7 @@ class UserController extends Controller
     public function store(UserRequest $request)
     {
         $request->validate([
-            'username' => ['unique:users,username', Rule::unique((new User)->getTable())->ignore($this->route()->user->id ?? null)]
+            'username' => 'unique:users,username'
         ]);
         
         $name = $request->name;
