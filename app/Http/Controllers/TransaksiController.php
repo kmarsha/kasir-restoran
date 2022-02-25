@@ -34,7 +34,7 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        $menus = Menu::all();
+        $menus = Menu::where('ketersediaan', '>', 0)->get();
         $harga = Menu::get('harga');
         
         return view('kasir.create', compact('menus', 'harga'));
@@ -48,7 +48,7 @@ class TransaksiController extends Controller
      */
     public function store(TransaksiRequest $request)
     {
-        $nama_pelannggan = $request->nama_pelanggan;
+        $nama_pelanggan = $request->nama_pelanggan;
         $menu = $request->nama_menu;
         $menus = Menu::where('nama_menu', $menu)->get();
         $menu_id = $menus[0]->id;
@@ -57,7 +57,7 @@ class TransaksiController extends Controller
         $peg_id = Auth::user()->id;
 
         Transaksi::create([
-            'nama_pelanggan' => $nama_pelannggan,
+            'nama_pelanggan' => $nama_pelanggan,
             'menu_id' => $menu_id,
             'jumlah' => $jumlah,
             'total_harga' => $total_harga,
@@ -113,7 +113,7 @@ class TransaksiController extends Controller
      */
     public function update(Request $request, Transaksi $transaksi, $id)
     {
-        $nama_pelannggan = $request->nama_pelanggan;
+        $nama_pelanggan = $request->nama_pelanggan;
         $menu = $request->nama_menu;
         $menus = Menu::where('nama_menu', $menu)->get();
         $menu_id = $menus[0]->id;
@@ -123,23 +123,41 @@ class TransaksiController extends Controller
         $trans = Transaksi::find($id);
 
         $jumlah_lama = $trans->jumlah;
-        
+        $old_menu_id = $trans->menu_id;
+
         $trans->update([
-            'nama_pelanggan' => $nama_pelannggan,
+            'nama_pelanggan' => $nama_pelanggan,
             'menu_id' => $menu_id,
             'jumlah' => $jumlah_baru,
             'total_harga' => $total_harga,
         ]);
 
-        $menu_change = Menu::find($menu_id);
-        $ket_ada = $menu_change->ketersediaan;
+        if ($menu_id !== $old_menu_id) {
+            $menu_change = Menu::find($old_menu_id);
+            $ket_ada = $menu_change->ketersediaan;
+            $ket_ada_new = $ket_ada + $jumlah_lama;
+            $menu_change->update([
+                'ketersediaan' => $ket_ada_new
+            ]);
+            
+            $menu_change_2 = Menu::find($menu_id);
+            $ket_ada = $menu_change_2->ketersediaan;
+            $ket_ada_new = $ket_ada - $jumlah_baru;
+            $menu_change_2->update([
+                'ketersediaan' => $ket_ada_new
+            ]);
+        } else {
+            $menu_change = Menu::find($menu_id);
+            
+            $ket_ada = $menu_change->ketersediaan;
 
-        $selisih = $jumlah_lama - $jumlah_baru;
-        $ket_ada_new = $ket_ada + $selisih;
+            $selisih = $jumlah_lama - $jumlah_baru;
+            $ket_ada_new = $ket_ada + $selisih;
 
-        $menu_change->update([
-            'ketersediaan' => $ket_ada_new
-        ]);
+            $menu_change->update([
+                'ketersediaan' => $ket_ada_new
+            ]);
+        }
 
         return redirect()->route('kasir.transaction.index')->with('success', 'Transaksi Telah Berhasil Diperbaharui!');
     }
