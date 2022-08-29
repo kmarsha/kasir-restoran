@@ -52,7 +52,7 @@
                         <p class="text-xl text-secondary mb-0">Rp. {{ number_format($data->total_harga, 2, ',', '.') }}</p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-xl text-secondary mb-0">{{ $data->pegawai->name }}</p>
+                        <p class="text-xl text-secondary mb-0">@isset($data->pegawai->name) {{ $data->pegawai->name }} @else - @endisset</p>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <p class="text-xl text-secondary mb-0">{{ $data->created_at->format('D, d M Y') }}</p>

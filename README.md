@@ -22,6 +22,7 @@
 - [Flowchart](#flowchart)
 - [Setting up a local environment](#getting_started)
 - [Usage](#usage)
+- [Preview](#preview)
 - [Technology Stack](#tech_stack)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
@@ -91,12 +92,20 @@ Login with Role Pelanggan/Customer (may you prefer to register)
 - Username = maccaa
 - Password = pass
 
+## 🌸 Preview <a name="preview"></a>
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page1.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page2.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page3.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page4.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page5.png">
+
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
 - [MySQL](https://www.mysql.com/) - Database
 - [Laravel](https://laravel.com/) - Server Framework
 - [Bootstrap](https://getbootstrap.com/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+- [SweetAlert](https://sweetalert2.github.io/) - Notification
 
 ## ✍️ Authors <a name = "authors"></a>
 
