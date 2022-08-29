@@ -18,6 +18,7 @@ Please run command below
         'admin' => \App\Http\Middleware\AdminMiddleware::class,
         'kasir' => \App\Http\Middleware\KasirMiddleware::class,
         'manajer' => \App\Http\Middleware\ManajerMiddleware::class,
+        'customer' => \App\Http\Middleware\CustomerMiddleware::class,
   idk but kernel.php with config Middleware after clone is gone maybe cause composer install? idk 
 7. Please notice that pdf print is not available just with php artisan serve / 127.0.0.1: but i use valet and it works
 
