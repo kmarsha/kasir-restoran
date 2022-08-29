@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\FilterDateController;
-use App\Http\Controllers\LaporanController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\Route\RouteController;
-use App\Http\Controllers\TransaksiController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\BuyMenuController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\FilterDateController;
+use App\Http\Controllers\Route\RouteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [RouteController::class, 'welcome'])->name('welcome');
 
-Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::name('pelanggan.')->middleware('customer')->group(function() {
+    Route::resource('menu', MenuController::class)->only(['index', 'show']);
+    Route::middleware('auth')->group(function() {
+        Route::get('create/menu/{menu}', [BuyMenuController::class, 'create'])->name('buy-menu');
+        Route::post('store/menu/', [BuyMenuController::class, 'store'])->name('store-menu');
+        Route::get('transaksi', [RouteController::class, 'transaksiPelanggan'])->name('transaksi.index');
+    });
+});
 
 Route::middleware('auth')->group(function() {
     Route::name('admin.')->prefix('admin')->middleware('admin')->group(function() {

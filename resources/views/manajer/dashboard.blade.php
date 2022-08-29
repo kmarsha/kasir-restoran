@@ -35,7 +35,7 @@
                   <div class="card-footer p-3">
                     <p class="mb-0">
                       <div class="row">
-                        <div class="col-xl-1 col-2">
+                        <div class="col-xl-2 col-2">
                           <span class="text-success text-sm font-weight-bolder">{{ $total_menu }}</span>
                         </div>
                         <div class="col-xl-10 col-8">

@@ -24,7 +24,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png">
   <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/icon1.png">
   <title>
-    {{ $titlePage }} | Cafe Bisa Ngopi
+    {{ $titlePage }} | Our Café
   </title>
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
@@ -35,11 +35,14 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+  <!-- Tempusdominus Bootstrap 4 -->
+  {{-- <link rel="stylesheet" href="{{ asset('plugins') }}/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css"> --}}
+  <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('plugins') }}/select2/css/select2.min.css">
+  <link rel="stylesheet" href="{{ asset('plugins') }}/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- CSS Files -->
   <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css" rel="stylesheet" />
   <link rel="stylesheet" href="{{ asset('css/add.css') }}">
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   {{-- jQuery UI --}}
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css"> --}}
   {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"> --}}
@@ -52,16 +55,16 @@
     @auth
         @include('layouts.assets.sidebar')
         <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
-        @include('layouts.assets.navbar')
-        <div class="container-fluid py-4">
+            @include('layouts.assets.navbar')
+            <div class="container-fluid py-4">
 
-            @yield('breadcrumb')
-            @yield('content')
-    
-            {{-- @include('layouts.assets.footer') --}}
+                @yield('breadcrumb')
+                @yield('content')
+        
+                {{-- @include('layouts.assets.footer') --}}
 
-            <footer class="footer small text-end text-black-50"><div class="container px-4 px-lg-5">Copyright &copy; Macca - Cafe Bisa Ngopi 2022</div></footer>
-        </div>
+                <footer class="footer small text-end text-black-50"><div class="container px-4 px-lg-5">Copyright &copy; Macca - Our Café 2022</div></footer>
+            </div>
         </main>
     
         {{-- <div class="fixed-plugin">
@@ -140,23 +143,31 @@
     @endauth
 
     @guest
-        @yield('content')
+        @yield('content-guest')
     @endguest
 
-  @include('layouts.assets.toast')
+    @yield('modals')
+
+  {{-- @include('layouts.assets.toast') --}}
   <!--   Core JS Files   -->
   {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"></script> --}}
+  <!-- jQuery -->
+  <script src="{{ asset('js/jquery.min.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="{{ asset('assets/js/core/bootstrap.bundle.min.js') }}"></script>
+  <!-- Select2 -->
+  <script src="{{ asset('plugins/select2/js/select2.min.js') }}"></script>
   <script src="{{ asset('assets/js/core/popper.min.js') }}"></script>
   <script src="{{ asset('assets/js/core/bootstrap.min.js') }}"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  {{-- <script src="{{ asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script> --}}
   <script src="{{ asset('assets/js/plugins/perfect-scrollbar.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/smooth-scrollbar.min.js') }}"></script>
   <script src="{{ asset('assets/js/plugins/chartjs.min.js') }}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.0.0') }}"></script>
   
-  @include('_partials.ajaxPromise')
-  
-  @stack('js')
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -166,11 +177,13 @@
       Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
     }
   </script>
+  
+  @include('_partials.ajaxPromise')
   @include('_partials.session-script')
   <!-- Github buttons -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="{{ asset('assets/js/material-dashboard.min.js?v=3.0.0') }}"></script>
+
+  @stack('js')
 </body>
 
 </html>

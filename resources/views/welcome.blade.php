@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Cafe Bisa Ngopi - Landing Page</title>
+        <title>Our Café - Landing Page</title>
         <link rel="icon" type="image/x-icon" href="{{ asset('assets') }}/img/icon1.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
@@ -17,6 +17,11 @@
     </head>
     <body id="page-top">
         <style>
+            .img-fluid {
+                height: 620px; 
+                width: 620px; 
+                object-fit: cover;
+            }
             .bg-gradient-primary {
                 background-image: linear-gradient(195deg, #c8846b 0%, #c88d6b 100%); 
             }
@@ -72,20 +77,36 @@
             .btn.bg-gradient-primary.focus,
             .btn.bg-gradient-primary:focus {
                 color: #fff; }
-    
+            
             .btn-outline-primary {
-            box-shadow: none; }
-            .btn-outline-primary:hover:not(.active) {
-                background-color: transparent;
-                opacity: .75;
-                box-shadow: none;
-                color: #c88d6b; }
-    
+            color: #c88d6b;
+            border-color: #c88d6b;
+            }
+            .btn-outline-primary:hover {
+            color: #fff;
+            background-color: #c88d6b;
+            border-color: #c88d6b;
+            }
+            .btn-check:focus + .btn-outline-primary, .btn-outline-primary:focus {
+            box-shadow: 0 0 0 0.25rem rgba(100, 161, 157, 0.5);
+            }
+            .btn-check:checked + .btn-outline-primary, .btn-check:active + .btn-outline-primary, .btn-outline-primary:active, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show {
+            color: #fff;
+            background-color: #c88d6b;
+            border-color: #c88d6b;
+            }
+            .btn-check:checked + .btn-outline-primary:focus, .btn-check:active + .btn-outline-primary:focus, .btn-outline-primary:active:focus, .btn-outline-primary.active:focus, .btn-outline-primary.dropdown-toggle.show:focus {
+             box-shadow: 0 0 0 0.25rem rgba(200, 141, 107, 0.5);
+            }
+            .btn-outline-primary:disabled, .btn-outline-primary.disabled {
+            color: #c88d6b;
+            background-color: transparent;
+            }
         </style>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" href="#page-top">Cafe Bisa Ngopi</a>
+                <a class="navbar-brand" href="#page-top">Our Café</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     Menu
                     <i class="fas fa-bars"></i>
@@ -115,8 +136,8 @@
             <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
-                        <h1 class="mx-auto my-0 text-uppercase">Cafe Bisa Ngopi</h1>
-                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Web Kafe Responsive untuk memanajemen Cafe Bisa Ngopi dengan Mudah.</h2>
+                        <h1 class="mx-auto my-0 text-uppercase">Our Café</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">Web Kafe Responsive untuk memanajemen Our Café dengan Mudah.</h2>
                         <a class="btn btn-primary" href="#about">Ayo Mulai</a>
                     </div>
                 </div>
@@ -129,11 +150,11 @@
                     <div class="col-lg-8">
                         <h2 class="text-white mb-4">{{ $total_transaksi }} Total Transaksi Dalam 1 Minggu Terakhir</h2>
                         <p class="text-white-50">
-                            Cafe Bisa Ngopi dibuat untuk memudahkan user untuk mengelola web. Ada 3 Jenis User; Admin, Kasir, dan Manajer.
+                            Our Café dibuat untuk memudahkan user untuk mengelola web. Ada 4 Jenis User; Admin, Kasir, Manajer, dan Costumer.
                         </p>
                     </div>
                 </div>
-                <img class="img-fluid" src="{{ asset('img') }}/bg-coffee.png" alt="..." />
+                <img class="" src="{{ asset('img') }}/bg-coffee.png" alt="..." />
             </div>
         </section>
         <!-- Menus -->
@@ -151,13 +172,13 @@
                 </div>
                 <!-- Menu One Row-->
                 <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('img') }}/chocolate cake.jpg" alt="..." /></div>
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('img') }}/chocolate cake.jpg" alt="..."/></div>
                     <div class="col-lg-6">
                         <div class="bg-black text-center h-100 project">
                             <div class="d-flex h-100">
                                 <div class="menu-text w-100 my-auto text-center text-lg-left">
                                     <h4 class="text-white">Chocolate Coffee Cake</h4>
-                                    <p class="mb-0 text-white-50">Gak cuman minuman, Cafe Bisa Ngopi juga punya makanan. Kue Coklat Kopi ini dibuat dari bahan dasar kopi dan krim coklat.</p>
+                                    <p class="mb-0 text-white-50">Gak cuman minuman, Our Café juga punya makanan. Kue Coklat Kopi ini dibuat dari bahan dasar kopi dan krim coklat.</p>
                                     <hr class="d-none d-lg-block mb-0 ms-0" />
                                 </div>
                             </div>
@@ -174,6 +195,21 @@
                                     <h4 class="text-white">Espresso</h4>
                                     <p class="mb-0 text-white-50">Kopi Espreso yang dibuat oleh barista terpercaya. Dijamin enak!</p>
                                     <hr class="d-none d-lg-block mb-0 me-0" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Menu One Row-->
+                <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
+                    <div class="col-lg-6"><img class="img-fluid" src="{{ asset('img') }}/mouse cake.jpg" alt="..." /></div>
+                    <div class="col-lg-6">
+                        <div class="bg-black text-center h-100 project">
+                            <div class="d-flex h-100">
+                                <div class="menu-text w-100 my-auto text-center text-lg-left">
+                                    <h5 class="text-white">Lihat Menunya Dengan Lengkap Sekarang Juga !!</h5>
+                                    <a href="{{ route('pelanggan.menu.index') }}" class="mb-0 btn btn-outline btn-outline-primary text-white-50">Klik</a>
+                                    <hr class="d-none d-lg-block mb-0 ms-0" />
                                 </div>
                             </div>
                         </div>
@@ -255,7 +291,7 @@
             </div>
         </section> --}}
         <!-- Footer-->
-        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Macca - Cafe Bisa Ngopi 2022</div></footer>
+        <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Macca - Our Café 2022</div></footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

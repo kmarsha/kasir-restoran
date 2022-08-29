@@ -24,7 +24,7 @@
           </div>
           <div class="card-body px-4 pb-2">
             @include('_partials.alert-error')
-            <form class="form" action="{{ route('manajer.menu.store') }}" method="post">
+            <form class="form" action="{{ route('manajer.menu.store') }}" enctype="multipart/form-data" method="post">
               @csrf
                 <div class="my-3">
                   <label class="form-label">Nama Menu</label>
@@ -58,6 +58,18 @@
                   @error('desc')
                     <div id="desc-error" class="error text-danger pl-3" for="desc" style="display: block;">
                       <small>{{ $errors->first('desc') }}</small>
+                    </div>
+                  @enderror
+                </div>
+
+                <div class="my-3">
+                  <label class="form-label">Foto Menu</label>
+                  <div class="input-group input-group-outline @error('foto') has-danger @enderror">
+                    <input type="image" name="foto" class="form-control" rows="3"></input>
+                  </div>
+                  @error('foto')
+                    <div id="foto-error" class="error text-danger pl-3" for="foto" style="display: block;">
+                      <small>{{ $errors->first('foto') }}</small>
                     </div>
                   @enderror
                 </div>

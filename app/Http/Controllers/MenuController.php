@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use App\Http\Requests\MenuRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class MenuController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('manajer');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +17,15 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::latest('updated_at')->paginate(5);
-        return view('manajer.menu.index', compact('menus'))
-            ->with('i', (request()->input('page', 1) -1) * 5);
+        if (Auth::guest() || Auth::user()->role == 'pelanggan') {
+            $menus = Menu::all();
+            return view('pelanggan.menu.index', compact('menus'))
+                ->with('i', (request()->input('page', 1) -1) * 5);
+        } elseif (Auth::user()->role == 'manajer') {
+            $menus = Menu::latest('updated_at')->paginate(5);
+            return view('manajer.menu.index', compact('menus'))
+                ->with('i', (request()->input('page', 1) -1) * 5);
+        }
     }
 
     /**
@@ -49,6 +51,8 @@ class MenuController extends Controller
         $desc = $request->desc;
         $kategori = $request->kategori;
         $availability = $request->ketersediaan;
+        // $foto
+        
 
         Menu::create([
             'nama_menu' => $nama_menu,
@@ -69,7 +73,11 @@ class MenuController extends Controller
      */
     public function show(Menu $menu)
     {
-        //
+        if (Auth::guest() || Auth::user()->role == 'pelanggan') {
+            return view('pelanggan.menu.show', compact('menu'));
+        } elseif (Auth::user()->role == 'manajer') {
+            return view('manajer.menu.show', compact('menu'));
+        }
     }
 
     /**

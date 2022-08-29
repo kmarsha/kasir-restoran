@@ -20,6 +20,7 @@ class TransaksiSeeder extends Seeder
 
         for($i = 1; $i <= 10; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('6')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -31,6 +32,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 6; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('5')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -42,6 +44,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 8; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('4')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -53,6 +56,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 4; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('3')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -64,6 +68,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 9; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('2')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -75,6 +80,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 12; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->subDays('1')->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),
@@ -86,6 +92,7 @@ class TransaksiSeeder extends Seeder
         };
         for($i = 1; $i <= 25; $i++) {
             Transaksi::insert([
+                'transaksi_id' => now()->format("YmdH_" . rand(9999999, 1000000)),
                 'nama_pelanggan' => $faker->firstName(),
                 'menu_id' => $faker->numberBetween(1, 11),
                 'jumlah' => $faker->numberBetween(1, 8),

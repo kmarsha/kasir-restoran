@@ -61,6 +61,15 @@ class UserSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
+            [
+                'name' => 'Macca',
+                'username' => 'maccaa',
+                'password' => bcrypt('pass'),
+                'pass' => 'pass',
+                'role' => 'pelanggan',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ];
 
         User::insert($users);

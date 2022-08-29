@@ -1,6 +1,6 @@
 @extends('layouts.app', ['titlePage' => 'Login'])
 
-@section('content')
+@section('content-guest')
   <main class="main-content  mt-0">
     <div class="page-header align-items-start min-vh-100" style="background-image: url('../../img/Cappuccino1.jpg');">
       <span class="mask bg-gradient-dark opacity-6"></span>
@@ -11,7 +11,7 @@
               <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                 <div class="bg-gradient-primary shadow-primary border-radius-lg py-3 pe-1">
                   <h4 class="text-white font-weight-bolder text-center mt-2 mb-0">Log in</h4>
-                  <h6 class="text-white font-weight-bolder text-center mt-2 mb-0">Welcome to 'Cafe Bisa Ngopi'</h6>
+                  <h6 class="text-white font-weight-bolder text-center mt-2 mb-0">Welcome to 'Our Café'</h6>
                 </div>
               </div>
               @if($errors->any())
@@ -50,6 +50,11 @@
                   <div class="form-check form-switch d-flex align-items-center mb-3">
                     <input class="form-check-input" name="remember" type="checkbox" id="rememberMe">
                     <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember me</label>
+                  </div>
+                  <div class="mb-1">
+                    <small class="float-end">
+                      Belum Punya akun? <a href="{{ route('register') }}">Register</a>
+                    </small>
                   </div>
                   <div class="text-center">
                     <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign in</button>
