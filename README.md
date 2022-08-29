@@ -67,12 +67,40 @@ composer update
 
 cp .env.example .env
 
+php artisan key:generate
+
 CREATE DATABASE
 ```
 modify .env file
 ```
+php artisan migrate --seed
+
 php artisan serve
 ```
+open vendor\laravel\ui\auth-backend\AuthenticatesUsers.php 
+  1) change public function username() to return 'username' not 'email'
+  2) add sintaks below to protected function authenticated()
+        ```
+        if (Auth::user()->role == 'admin') {
+            return redirect('/admin/registration');
+        } elseif (Auth::user()->role == 'kasir') {
+            return redirect('/kasir/transaction');
+        } elseif (Auth::user()->role == 'manajer') {
+            return redirect('/manajer/dashboard');
+        }
+        ```
+  The Reason cause file under vendor not able to pushed
+
+open app\Http\Kernel.php add sintaks below in last lined of protected $routeMiddleware array
+        ```
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
+        'kasir' => \App\Http\Middleware\KasirMiddleware::class,
+        'manajer' => \App\Http\Middleware\ManajerMiddleware::class,
+        'customer' => \App\Http\Middleware\CustomerMiddleware::class,
+        ```
+  idk but kernel.php with config Middleware after clone is gone maybe cause composer install?
+
+!! 🍭 Please notice that pdf print is not available just with php artisan serve / 127.0.0.1: but i use valet and it works 
 
 ## 🎈 Usage <a name="usage"></a>
 
