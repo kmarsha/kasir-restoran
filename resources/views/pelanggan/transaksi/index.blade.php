@@ -40,7 +40,7 @@
                 </div>
               </div>
             @empty
-                <h3 class="h5 text-center">Tidak ada Pembelian Hari Ini</h3>
+                <h3 class="h5 text-center">Belum ada Pembelian Hari Ini</h3>
             @endforelse
           </div>
           <div class="row px-md-4">

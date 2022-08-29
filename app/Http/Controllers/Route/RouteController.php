@@ -53,7 +53,7 @@ class RouteController extends Controller
 
         $rekap_transaksi = RekapTransaksi::where('user_id', $user_id)->get();
 
-        if (isset($rekap_transaksi)) {
+        if ($rekap_transaksi->count() > 0) {
             $total_bayar = $rekap_transaksi[0]->total_bayar;
         } else {
             $total_bayar = 0;
