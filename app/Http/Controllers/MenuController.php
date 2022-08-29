@@ -46,18 +46,26 @@ class MenuController extends Controller
      */
     public function store(MenuRequest $request)
     {
+        $request->validate([
+            'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|dimensions:min_height=200,min_width=200'
+        ]);
+        
         $nama_menu = $request->nama_menu;
         $harga = $request->harga;
         $desc = $request->desc;
         $kategori = $request->kategori;
         $availability = $request->ketersediaan;
-        // $foto
         
+        $fileName = str_replace(' ', '_', strtolower($request->nama_menu)) . '.' . $request->file('foto')->extension();
+        $request->file('foto')->storeAs('public/menu', $fileName);
+
+        $foto = 'storage/menu/'.$fileName;
 
         Menu::create([
             'nama_menu' => $nama_menu,
             'harga' => $harga,
             'deskripsi' => $desc,
+            'foto' => $foto,
             'kategori' => $kategori,
             'ketersediaan' => $availability,
         ]);
@@ -114,6 +122,17 @@ class MenuController extends Controller
             'kategori' => $kategori,
             'ketersediaan' => $availability,
         ]);
+
+        if ($request->file('foto')) {
+            $fileName = str_replace(' ', '_', strtolower($request->nama_menu)) . '.' . $request->file('foto')->extension();
+            $request->file('foto')->storeAs('public/menu', $fileName);
+    
+            $foto = 'storage/menu/'.$fileName;
+
+            $menu->update([
+                'foto' => $foto,
+            ]);
+        }
 
         return redirect()->route('manajer.menu.index')->with('success', 'Menu Telah Berhasil Diperbaharui!');
     }

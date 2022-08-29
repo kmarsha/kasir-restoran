@@ -28,7 +28,7 @@ class MenuRequest extends FormRequest
             'harga' => 'required',
             'desc' => 'required|string|max:50',
             'kategori' => 'required',
-            'ketersediaan' => 'required|numeric'
+            'ketersediaan' => 'required|numeric',
         ];
     }
 }

@@ -65,7 +65,7 @@
                 <div class="my-3">
                   <label class="form-label">Foto Menu</label>
                   <div class="input-group input-group-outline @error('foto') has-danger @enderror">
-                    <input type="image" name="foto" class="form-control" rows="3"></input>
+                    <input type="file" id="inputFotoMenu" accept="image/png, image/jpeg" name="foto" class="form-control">
                   </div>
                   @error('foto')
                     <div id="foto-error" class="error text-danger pl-3" for="foto" style="display: block;">
