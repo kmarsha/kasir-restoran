@@ -63,6 +63,8 @@
                             <span class="badge badge-sm bg-gradient-warning">Kasir</span>
                           @elseif ($user->role == 'manajer')
                             <span class="badge badge-sm bg-gradient-success">Manajer</span>
+                          @elseif ($user->role == 'pelanggan')
+                            <span class="badge badge-sm bg-gradient-primary">Pelanggan</span>
                           @endif
                         </td>
                         <td class="align-middle text-center text-sm">
