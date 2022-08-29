@@ -59,9 +59,13 @@ Say what the step will be
 
 ```
 git clone
+
 composer install
+
 composer update
+
 cp .env.example .env
+
 CREATE DATABASE
 ```
 modify .env file
