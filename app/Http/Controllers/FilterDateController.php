@@ -18,14 +18,17 @@ class FilterDateController extends Controller
         $from = $request->from;
         $to = $request->to;
 
-        $fDatas = Transaksi::join('menus', 'menus.id', '=', 'transaksis.menu_id')
-                ->join('users', 'users.id', '=', 'transaksis.pegawai_id')
-                ->select('transaksis.*', 'menus.nama_menu', 'users.name')
-                ->where('transaksis.created_at', '>=', $from)
-                ->where('transaksis.created_at', '<=', $to)
+        if ($from == $to) {
+            $fDatas = Transaksi::whereDate('transaksis.created_at', $from)->join('menus', 'menus.id', '=', 'transaksis.menu_id')
+                ->select('transaksis.*', 'menus.nama_menu')
                 ->get();
-
-        // $fDatas->created_at->date_format('D, d M Y');
+        } else {
+            $fDatas = Transaksi::join('menus', 'menus.id', '=', 'transaksis.menu_id')
+                ->select('transaksis.*', 'menus.nama_menu')
+                ->whereDate('transaksis.created_at', '>=', $from)
+                ->whereDate('transaksis.created_at', '<=', $to)
+                ->get();
+        }
 
         if ($request->ajax()) {
             return response()->json([

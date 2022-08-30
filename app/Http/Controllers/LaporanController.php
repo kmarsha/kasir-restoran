@@ -40,7 +40,12 @@ class LaporanController extends Controller
     {
         $from = $request->from;
         $to = $request->to;
-        $datas = Transaksi::where('created_at', '>=', $from)->where('created_at', '<=', $to)->get();
+
+        if ($from == $to) {
+            $datas = Transaksi::whereDate('created_at', $from)->get();
+        } else {
+            $datas = Transaksi::whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get();
+        }
 
         $pdf = PDF::loadview('manajer/laporan/pdf-filter', compact('datas', 'from', 'to'))->setPaper('a4', 'landscape');
     	return $pdf->stream();

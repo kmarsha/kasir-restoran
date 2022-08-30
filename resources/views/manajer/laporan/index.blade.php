@@ -59,10 +59,11 @@
                   <tr>
                     <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">No</th>
                     <th class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pelanggan</th>
+                    <th id="td-user_id" class="text-uppercase text-secondary text-xs font-weight-bolder opacity-7">User</th>
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7 ps-2">Menu</th>
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Jumlah</th>
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Total</th>
-                    <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pegawai</th>
+                    <th id="td-nama_pegawai" class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Nama Pegawai</th>
                     <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7" colspan="2" id="td-created_at">Waktu</th>
                   </tr>
                 </thead>
@@ -77,6 +78,9 @@
                         <td class="text-secondary text-center" style="width: 2px">{{ ++$i }}</td>
                         <td>
                           <p class="text-xl text-capitalize text-secondary mb-0">{{ $data->nama_pelanggan }}</p>
+                        </td>
+                        <td class="text-center">
+                          <p class="text-xl text-secondary mb-0">@isset($data->user_id) {{ $data->pelanggan->username }} @else - @endisset</p>
                         </td>
                         <td> 
                           <p class="text-xs font-weight-bold mb-0">{{ $data->menu->nama_menu }}</p>
@@ -128,9 +132,10 @@
         }
         const resp = await HitData('/manajer/filter/laporan', data, 'POST')
         const fdata = resp.data
-        console.log(fdata)
         $("tbody").empty()
         $("#td-created_at").remove()
+        $("#td-user_id").remove()
+        $("#td-nama_pegawai").remove()
 
         if (fdata.length === 0) {
           $("#cetak-pdf-filtering").addClass('d-none')
@@ -161,9 +166,6 @@
                         <td class="align-middle text-center text-sm">
                           <p class="text-xl text-secondary mb-0">Rp. ${rupiah} </p>
                         </td>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xl text-secondary mb-0">${data['name']}</p>
-                        </td>
                       </tr>`)
           iter++;
         }
@@ -182,7 +184,7 @@
             'warning'
           )
         } else if (from != '' && to != '') {
-          if (from >= to) {
+          if (from > to) {
             var msg = "Input Tanggal Harus Berurutan!"
             Swal.fire(
               'Warning!',

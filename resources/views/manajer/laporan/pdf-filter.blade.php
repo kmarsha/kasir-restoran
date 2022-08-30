@@ -28,6 +28,7 @@
                   <tr>
                     <th class="text-secondary text-xs font-weight-bolder opacity-7">No</th>
                     <th class="text-secondary text-xs font-weight-bolder opacity-7">Nama Pelanggan</th>
+                    <th class="text-secondary text-xs font-weight-bolder opacity-7">User</th>
                     <th class="text-secondary text-center text-xs font-weight-bolder opacity-7 ps-2">Menu</th>
                     <th class="text-center text-secondary text-xs font-weight-bolder opacity-7">Jumlah</th>
                     <th class="text-center text-secondary text-xs font-weight-bolder opacity-7">Total</th>
@@ -41,6 +42,9 @@
                       <td class="text-secondary text-center" style="width: 2px">{{ $loop->iteration }}</td>
                       <td>
                         <p class="text-xl text-capitalize text-secondary mb-0">{{ $data->nama_pelanggan }}</p>
+                      </td>
+                      <td class="text-center">
+                        <p class="text-xl text-secondary mb-0">@isset($data->user_id) {{ $data->pelanggan->username }} @else - @endisset</p>
                       </td>
                       <td>
                         <p class="text-xs font-weight-bold mb-0">{{ $data->menu->nama_menu }}</p>
@@ -69,6 +73,7 @@
         </div>
       </div>
     </div>
+    <footer class="footer small text-end text-black-50"><div class="container-fluid px-4 px-lg-5">Copyright &copy; Macca - Our Café 2022</div></footer>
   </div>
 </body>
 </html>

@@ -126,6 +126,8 @@ Login with Role Pelanggan/Customer (may you prefer to register)
 <img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page3.png">
 <img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page4.png">
 <img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/page5.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/print1.png">
+<img src="https://github.com/kmarsha/kasir-restoran/blob/master/public/img/print2.png">
 
 ## ⛏️ Built With <a name = "tech_stack"></a>
 
