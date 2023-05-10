@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
-use PDF;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class LaporanController extends Controller
 {
@@ -32,7 +32,7 @@ class LaporanController extends Controller
     {
         $datas = Transaksi::all();
 
-        $pdf = PDF::loadview('manajer/laporan/pdf', compact('datas'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadview('manajer/laporan/pdf', compact('datas'))->setPaper('a4', 'landscape');
     	return $pdf->stream();
     }
 
@@ -47,7 +47,7 @@ class LaporanController extends Controller
             $datas = Transaksi::whereDate('created_at', '>=', $from)->whereDate('created_at', '<=', $to)->get();
         }
 
-        $pdf = PDF::loadview('manajer/laporan/pdf-filter', compact('datas', 'from', 'to'))->setPaper('a4', 'landscape');
+        $pdf = Pdf::loadview('manajer/laporan/pdf-filter', compact('datas', 'from', 'to'))->setPaper('a4', 'landscape');
     	return $pdf->stream();
     }
 }

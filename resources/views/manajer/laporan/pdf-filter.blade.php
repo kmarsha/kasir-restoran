@@ -4,13 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link id="pagestyle" href="{{ asset('assets') }}/css/material-dashboard.css?v=3.0.0" rel="stylesheet" />
+  <link id="pagestyle" href="{{ public_path('assets') }}/css/material-dashboard.min.css?v=3.0.0" rel="stylesheet" />
+  {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
   <title>Laporan PDF ({{ $from }}  -  {{ $to }}) Our Café</title>
 </head>
 <body>
   <div class="container-fluid py-4">
     <header>
-      <h2 class="text-center"><img src="{{ asset('assets/img/icon1.png') }}" alt="logo" width="40" height="40"> Transaksi <i class="text-sm">({{ $from }}  -  {{ $to }})</i></h2>
+      <h2 class="text-center"><img src="{{ public_path('assets/img/icon1.png') }}" alt="logo" width="40" height="40"> Transaksi <i class="text-sm">({{ $from }}  -  {{ $to }})</i></h2>
     </header>
     <div class="row">
       <div class="col-12">
